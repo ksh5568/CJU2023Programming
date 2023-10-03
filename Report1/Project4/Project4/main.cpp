@@ -2,29 +2,29 @@
 
 int main(void)
 {
-	int inputprice = 0; // ÅõÀÔÇÑ ±İ¾× º¯¼ö ÃÊ±âÈ­
-	int itemprice = 0;  // ¹°°Ç°ª º¯¼ö ÃÊ±âÈ­
-	int change = 0;  // °Å½º¸§µ· º¯¼ö ÃÊ±âÈ­
-	int c100 = 0;  // 100¿ø º¯¼ö ÃÊ±âÈ­
-	int c500 = 0;  // 500¿ø º¯¼ö ÃÊ±âÈ­
-	int c1000 = 0;  // 1000¿ø º¯¼ö ÃÊ±âÈ­
+	int inputprice = 0; // íˆ¬ì…í•œ ê¸ˆì•¡ ë³€ìˆ˜ ì´ˆê¸°í™”
+	int itemprice = 0;  // ë¬¼ê±´ê°’ ë³€ìˆ˜ ì´ˆê¸°í™”
+	int change = 0;  // ê±°ìŠ¤ë¦„ëˆ ë³€ìˆ˜ ì´ˆê¸°í™”
+	int c100 = 0;  // 100ì› ë³€ìˆ˜ ì´ˆê¸°í™”
+	int c500 = 0;  // 500ì› ë³€ìˆ˜ ì´ˆê¸°í™”
+	int c1000 = 0;  // 1000ì› ë³€ìˆ˜ ì´ˆê¸°í™”
 
-	printf("Enter the amount you put in : ");  // ÅõÀÔÇÑ ±İ¾× ÀÔ·Â ¹Ş±â
-	scanf_s("%d", &inputprice);  // ÅõÀÔÇÑ ±İ¾× Á¤¼ö·Î ÀÔ·Â
+	printf("Enter the amount you put in : ");  // íˆ¬ì…í•œ ê¸ˆì•¡ ì…ë ¥ ë°›ê¸°
+	scanf_s("%d", &inputprice);  // íˆ¬ì…í•œ ê¸ˆì•¡ ì •ìˆ˜ë¡œ ì…ë ¥
 
-	printf("Enter the price of the item : ");  // ¹°°Ç°ª ÀÔ·Â ¹Ş±â
-	scanf_s("%d", &itemprice);  // ¹°°Ç°ª Á¤¼ö·Î ÀÔ·Â
+	printf("Enter the price of the item : ");  // ë¬¼ê±´ê°’ ì…ë ¥ ë°›ê¸°
+	scanf_s("%d", &itemprice);  // ë¬¼ê±´ê°’ ì •ìˆ˜ë¡œ ì…ë ¥
 
-	change = inputprice - itemprice;  // °Å½º¸§µ· °è»ê °ø½Ä
+	change = inputprice - itemprice;  // ê±°ìŠ¤ë¦„ëˆ ê³„ì‚° ê³µì‹
 
-	c1000 = change / 1000;  // 1000¿ø °è»ê °ø½Ä
-	c500 = change / 500;  // 500¿ø °è»ê °ø½Ä
-	c100 = change / 100;  // 100¿ø °è»ê °ø½Ä
+	c1000 = change / 1000;  // 1000ì› ê³„ì‚° ê³µì‹
+	c500 = (change-(c1000*1000)) / 500;  // 500ì› ê³„ì‚° ê³µì‹
+	c100 = (change - (c1000 * 1000) - (c500*500)) / 100;  // 100ì› ê³„ì‚° ê³µì‹
 
-	printf("change money : %d\n", change);  // °è»êµÈ °Å½º¸§µ· Ãâ·Â
-	printf("change 1000 : %d\n", c1000);  // °è»êµÈ 1000¿øÀÇ °³¼ö Ãâ·Â
-	printf("change 500 : %d\n", c500);  // °è»êµÈ 500¿øÀÇ °³¼ö Ãâ·Â
-	printf("change 100 : %d\n", c100);  // °è»êµÈ 100¿øÀÇ °³¼ö Ãâ·Â
+	printf("change money : %d\n", change);  // ê³„ì‚°ëœ ê±°ìŠ¤ë¦„ëˆ ì¶œë ¥
+	printf("change 1000 : %d\n", c1000);  // ê³„ì‚°ëœ 1000ì›ì˜ ê°œìˆ˜ ì¶œë ¥
+	printf("change 500 : %d\n", c500);  // ê³„ì‚°ëœ 500ì›ì˜ ê°œìˆ˜ ì¶œë ¥
+	printf("change 100 : %d\n", c100);  // ê³„ì‚°ëœ 100ì›ì˜ ê°œìˆ˜ ì¶œë ¥
 
 	return 0;
 }
