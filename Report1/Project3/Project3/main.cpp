@@ -1,15 +1,15 @@
 #include <stdio.h>
-// À±³â °è»êÇÏ´Â °ø½Ä ¸ŞÅ©·Î ¼³Á¤
+// ìœ¤ë…„ ê³„ì‚°í•˜ëŠ” ê³µì‹ ë©”í¬ë¡œ ì„¤ì •
 #define LEAP ((year%4 == 0) && (year%100 != 0)) || (year%400 == 0) ? printf("It's a leap year\n") : printf("It's not leap year\n");
 
 int main(void)
 {
-	int year = 0; // ³âµµ°ª ÃÊ±âÈ­
+	int year = 0; // ë…„ë„ê°’ ì´ˆê¸°í™”
 
-	printf("Enter the year : ");  // ³âµµ°ª ÀÔ·Â ¹Ş±â
-	scanf_s("%d", &year);  // ³âµµ°ª Á¤¼ö·Î ÀÔ·Â
+	printf("Enter the year : ");  // ë…„ë„ê°’ ì…ë ¥ ë°›ê¸°
+	scanf_s("%d", &year);  // ë…„ë„ê°’ ì •ìˆ˜ë¡œ ì…ë ¥
 
-	LEAP(year);  // À±³â ¸ŞÅ¬·Î ºÒ·¯¿À±â
+	LEAP(year);  // ìœ¤ë…„ ë©”í¬ë¡œ ë¶ˆëŸ¬ì˜¤ê¸°
 
 	return 0;
 }
