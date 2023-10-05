@@ -1,24 +1,24 @@
 #include <stdio.h>
 #define AGE 25
-#define chestsize 95
-#define twen 20
-#define Ssize 85
-#define Msize 90
-#define Lsize 100
+#define CHESTSIZE 95
+#define TWENTY 20
+#define S_SIZE 85
+#define M_SIZE 90
+#define L_SIZE 100
 
 int main(void)
 {
 	int age = AGE;
-	int chest = chestsize;
+	int chest = CHESTSIZE;
 	char size;
 
-	if (age < twen)
+	if (age < TWENTY)
 	{
-		if (chest < Ssize)
+		if (chest < S_SIZE)
 		{
 			size = 'S';
 		}
-		else if ((chest >= Ssize) && (chest < chestsize))
+		else if ((chest >= S_SIZE) && (chest < CHESTSIZE))
 		{
 			size = 'M';
 		}
@@ -29,11 +29,11 @@ int main(void)
 	}
 	else
 	{
-		if (chest < Msize)
+		if (chest < M_SIZE)
 		{
 			size = 'S';
 		}
-		else if ((chest >= Msize) && (chest < Lsize))
+		else if ((chest >= M_SIZE) && (chest < L_SIZE))
 		{
 			size = 'M';
 		}
