@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define S_SIZE 90
-#define M_SIZE 100
+#define S_SIZE 90  //  90에 대한 변수 메크로 설정
+#define M_SIZE 100  //  100에 대한 변수 메크로 설정
 
 int main(void)
 {
