@@ -5,7 +5,7 @@
 int main(void)
 {
 	int chest = 95;  // 가슴둘레의 크기를 저장할 변수
-	char size;  // 옷의 사이즈를 결정해서 조장할 변수
+	char size;  // 옷의 사이즈를 결정해서 저장할 변수
 
 	if (chest <= S_SIZE)  // 'S'사이즈에 대한 범위 설정
 	{
