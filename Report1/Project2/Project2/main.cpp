@@ -1,18 +1,18 @@
 #include <stdio.h>
-#define SPRING (3<=a && a <=5) ? printf("spring\n") :  // º½¿¡ ´ëÇÑ ¹üÀ§ ¸ÞÅ©·Î ¼³Á¤
-#define SUMMER (6<=a && a <=8) ? printf("summer\n") :  // ¿©¸§¿¡ ´ëÇÑ ¹üÀ§ ¸ÞÅ©·Î ¼³Á¤
-#define FALL (9<=a && a <=11) ? printf("fall\n") :  // °¡À»¿¡ ´ëÇÑ ¹üÀ§ ¸ÞÅ©·Î ¼³Á¤
-#define WINTER (12==a || 1<= a && a <=2) ? printf("winter\n") :  // °Ü¿ï¿¡ ´ëÇÑ ¹üÀ§ ¸ÞÅ©·Î ¼³Á¤
-#define WRONG (12 < a) ? printf("This month does not correspond to the four seasons\n") :  // »ç°èÀý¿¡ ÇØ´çµÇÁö ¾Ê´Â ¼ö ¿À·ù¿¡ ´ëÇÑ ¸ÞÅ©·Î ¼³Á¤
+#define SPRING (3<=a && a <=5) ? printf("spring\n") :  // ë´„ì— ëŒ€í•œ ë²”ìœ„ ë©”í¬ë¡œ ì„¤ì •
+#define SUMMER (6<=a && a <=8) ? printf("summer\n") :  // ì—¬ë¦„ì— ëŒ€í•œ ë²”ìœ„ ë©”í¬ë¡œ ì„¤ì •
+#define FALL (9<=a && a <=11) ? printf("fall\n") :  // ê°€ì„ì— ëŒ€í•œ ë²”ìœ„ ë©”í¬ë¡œ ì„¤ì •
+#define WINTER (12==a || 1<= a && a <=2) ? printf("winter\n") :  // ê²¨ìš¸ì— ëŒ€í•œ ë²”ìœ„ ë©”í¬ë¡œ ì„¤ì •
+#define WRONG (12 < a) ? printf("This month does not correspond to the four seasons\n") :  // ì‚¬ê³„ì ˆì— í•´ë‹¹ë˜ì§€ ì•ŠëŠ” ìˆ˜ ì˜¤ë¥˜ì— ëŒ€í•œ ë©”í¬ë¡œ ì„¤ì •
 
 int main(void)
 {
-	int a=0;  // »ç°èÀýÀÌ ÀÔ·ÂµÇ´Â º¯¼ö ÃÊ±âÈ­
+	int a=0;  // ì‚¬ê³„ì ˆì´ ìž…ë ¥ë˜ëŠ” ë³€ìˆ˜ ì´ˆê¸°í™”
 
-	printf("Enter the month : ");  // a°ª ÀÔ·Â ¹Þ±â
-	scanf_s("%d", &a);  // a°ª Á¤¼ö·Î ÀÔ·Â
+	printf("Enter the month : ");  // aê°’ ìž…ë ¥ ë°›ê¸°
+	scanf_s("%d", &a);  // aê°’ ì •ìˆ˜ë¡œ ìž…ë ¥
 
-	SPRING(a); // a°ª °¢ ¸Åµå·Î¿¡ ´ëÀÔ ¹× Ãâ·Â
+	SPRING(a); // aê°’ ê° ë§¤í¬ë¡œì— ëŒ€ìž… ë° ì¶œë ¥
 	SUMMER(a);
 	FALL(a);
 	WINTER(a);
