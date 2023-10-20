@@ -10,7 +10,6 @@ int main(void)
 	int sum_GCD = 0;  // 최대공약수 값 변수 설정
 	int sum_LCM = 0;  // 최소공배수 값 변수 설정
 	int min = 0;  // 최소값 변수 설정
-	int max = 0;  // 최대값 변수 설정
 
 	while (true)
 	{
