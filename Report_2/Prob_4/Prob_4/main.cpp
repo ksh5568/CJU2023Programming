@@ -1,24 +1,24 @@
 #include <stdio.h>
-#define G 9.81  // Áß·Â°¡¼Óµµ (´ÜÀ§ : m/s^2)
-#define H 100.00  // ÃÊ±â ³ôÀÌ (´ÜÀ§ : m)
-#define KG 1  // ÄÉÆ²º§ ¹«°Ô (´ÜÀ§ : kg)
+#define G 9.81  // ì¤‘ë ¥ê°€ì†ë„ (ë‹¨ìœ„ : m/s^2)
+#define H 100.00  // ë†’ì´ ë³€ìœ„ (ë‹¨ìœ„ : m)
+#define KG 1  // ì¼€í‹€ë²¨ ë¬´ê²Œ (ë‹¨ìœ„ : kg)
 
 int main(void)
 {
-	double nTIME = 0.0000;  // ½Ã°£¿¡ ´ëÇÑ º¯¼ö ¼³Á¤
-	double height = 0.0000;  // ³ôÀÌ º¯À§¿¡ ´ëÇÑ º¯¼ö ¼³Á¤
+	double nTIME = 0.0000;  // ì‹œê°„ì— ëŒ€í•œ ë³€ìˆ˜ ì„¤ì •
+	double height = 0.0000;  // ì´ˆê¸° ë†’ì´ì— ëŒ€í•œ ë³€ìˆ˜ ì„¤ì •
 
-	printf("This is a program that calculates free fall motion.\n");  // ÀÚÀ¯³«ÇÏ ¿îµ¿¿¡ ´ëÇÑ ÇÁ·Î±×·¥ÀÌ¶ó´Â °ÍÀ» Ãâ·Â
-	printf("When Youngsu lets a 1kg kettlebell fall freely from a height of 100m,\n");  // 1kg ÄÉÆ²º§ÀÌ 100m ³ôÀÌ¿¡¼­ ¶³¾îÁú ¶§¸¦ Ãâ·Â
-	printf("how long does it take for it to reach the ground?\n");  // Áö¸é¿¡ µµ´ŞÇÏ±â±îÁö °É¸®´Â ½Ã°£Àº ¾ó¸¶ÀÎ°¡¸¦ Ãâ·Â
+	printf("This is a program that calculates free fall motion.\n");  // ììœ ë‚™í•˜ ìš´ë™ì— ëŒ€í•œ í”„ë¡œê·¸ë¨ì´ë¼ëŠ” ê²ƒì„ ì¶œë ¥
+	printf("When Youngsu lets a 1kg kettlebell fall freely from a height of 100m,\n");  // 1kg ì¼€í‹€ë²¨ì´ 100m ë†’ì´ì—ì„œ ë–¨ì–´ì§ˆ ë•Œë¥¼ ì¶œë ¥
+	printf("how long does it take for it to reach the ground?\n");  // ì§€ë©´ì— ë„ë‹¬í•˜ê¸°ê¹Œì§€ ê±¸ë¦¬ëŠ” ì‹œê°„ì€ ì–¼ë§ˆì¸ê°€ë¥¼ ì¶œë ¥
 
 	do
 	{
-		height = 0.5 * G * (nTIME * nTIME);  // ÀÚÀ¯³«ÇÏ¿îµ¿ °ø½Ä
-		nTIME = nTIME + 0.0001;  // ¹İº¹ µÉ¶§ 0.0001s ¾¿ Áõ°¡
+		height = 0.5 * G * (nTIME * nTIME);  // ììœ ë‚™í•˜ìš´ë™ ê³µì‹
+		nTIME = nTIME + 0.0001;  // ë°˜ë³µ ë ë•Œ 0.0001s ì”© ì¦ê°€
 
-	} while (height < H);  // ÃÊ±â ³ôÀÌ°ªº¸´Ù ÀÛÀ» ½Ã °è¼ÓÇÏ¿© ¿¬»ê
+	} while (height < H);  // ë†’ì´ ë³€ìœ„ë³´ë‹¤ ì‘ì„ ì‹œ ê³„ì†í•˜ì—¬ ì—°ì‚°
 	
 	printf("\n");
-	printf("Time : %.3lf s\n", nTIME);  // °á°ú°ª Ãâ·Â
+	printf("Time : %.3lf s\n", nTIME);  // ê²°ê³¼ê°’ ì¶œë ¥
 }
