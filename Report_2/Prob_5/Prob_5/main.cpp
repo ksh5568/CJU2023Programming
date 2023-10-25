@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#define TEN 10.0
 
 int main(void)
 {
@@ -13,14 +12,14 @@ int main(void)
 	int i = 0;  // 반복하는 수 변수 지정
 
 	printf("Enter the 10 number :\n");  // 10개의 숫자를 입력하세요
-	for(i=0; i<TEN; i++)  // i가 10까지 반복하면서 1씩 증가는 함
+	for(i=0; i<10; i++)  // i가 10까지 반복하면서 1씩 증가는 함
 	{
 		scanf_s("%lf", &num);  // 입력 받은수를 저장
 		sum += num;  // 총합을 구하는 공식
 		num_a += pow(num, 2);  // 입력 받은 수의 제곱근을 다른 변수에 저장
 	}
 
-	avg = sum / TEN;  // 평균값 계산
+	avg = sum / 10;  // 평균값 계산
 
 	dis = (num_a + 10*pow(avg, 2) - (2 * avg * sum)) / 10;  // 분산 구하는 공식
 
