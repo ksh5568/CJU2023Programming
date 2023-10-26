@@ -1,28 +1,28 @@
 #include <stdio.h>
 
-int get_operation(int x, int y);  // »çÄ£¿¬»ê ÇÔ¼ö ¼±¾ğ
+int get_operation(int x, int y);  // ì‚¬ì¹œì—°ì‚° í•¨ìˆ˜ ì„ ì–¸
 
 int main(void)
 {
-	int nA = 0;  // Ã¹¹øÂ°¼ö º¯¼ö ÁöÁ¤
-	int nB = 0;  // µÎ¹øÂ°¼ö º¯¼ö ÁöÁ¤
-	int res = 0;  // º¯È¯°ªÀ» ÀúÀåÇÒ º¯¼ö ÁöÁ¤
+	int nA = 0;  // ì²«ë²ˆì§¸ìˆ˜ ë³€ìˆ˜ ì§€ì •
+	int nB = 0;  // ë‘ë²ˆì§¸ìˆ˜ ë³€ìˆ˜ ì§€ì •
+	int res = 0;  // ë³€í™˜ê°’ì„ ì €ì¥í•  ë³€ìˆ˜ ì§€ì •
 
 	res = get_operation(nA, nB);
 
 	return 0;
 }
 
-int get_operation(int x, int y)  // get_operation ÇÔ¼ö Á¤ÀÇ ½ÃÀÛ
+int get_operation(int x, int y)  // get_operation í•¨ìˆ˜ ì •ì˜ ì‹œì‘
 {
-	printf("Enter the two number : ");  // "µÎ ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä" Ãâ·Â 
-	scanf_s("%d%d", &x, &y);  // "ÀÔ·Â ¹ŞÀº µÎ º¯¼ö¸¦ ÀúÀå"
+	printf("Enter the two number : ");  // "ë‘ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”" ì¶œë ¥ 
+	scanf_s("%d%d", &x, &y);  // "ì…ë ¥ ë°›ì€ ë‘ ë³€ìˆ˜ë¥¼ ì €ì¥"
 
-	printf("Plus : %d\n", x + y);  // ´õÇÏ±â Ãâ·Â
-	printf("Subtraction : %d\n", x - y);  // »©±â Ãâ·Â
-	printf("Multiplication : %d\n", x * y);  // °öÇÏ±â Ãâ·Â
-	printf("Divide : %d\n", x / y);  // ³ª´©±â ¸ò Ãâ·Â
-	printf("Remaider : %d\n", x % y);  // ³ª´©±â ³ª¸ÓÁö Ãâ·Â
+	printf("Plus : %d\n", x + y);  // ë”í•˜ê¸° ì¶œë ¥
+	printf("Subtraction : %d\n", x - y);  // ë¹¼ê¸° ì¶œë ¥
+	printf("Multiplication : %d\n", x * y);  // ê³±í•˜ê¸° ì¶œë ¥
+	printf("Divide : %d\n", x / y);  // ë‚˜ëˆ„ê¸° ëª« ì¶œë ¥
+	printf("Remaider : %d\n", x % y);  // ë‚˜ëˆ„ê¸° ë‚˜ë¨¸ì§€ ì¶œë ¥
 
-	return x;  // °á°ú°ª ¹İÈ¯
+	return 0;  // ê²°ê³¼ê°’ ë°˜í™˜
 }
