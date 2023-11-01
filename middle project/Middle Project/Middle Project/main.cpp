@@ -1,105 +1,105 @@
 #include <stdio.h>
 #include <math.h>
 
-#define START 1111  // ½ÃÀÛ¿¡ ´ëÇÑ ¼ö 
-#define END 0000  // Á¾·á¿¡ ´ëÇÑ ¼ö
-#define ENERGY 2222  // ¿¡³ÊÁö ¹æÁ¤½Ä¿¡ ´ëÇÑ ¼ö
-#define PRESSURE 3333  //  ¾Ğ·Â ¹æÁ¤½Ä¿¡ ´ëÇÑ ¼ö
-#define HEAD 4444  // ¼öµÎ ¹æÁ¤½Ä¿¡ ´ëÇÑ ¼ö
-#define G 9.81  // Áß·Â°¡¼Óµµ¿¡ ´ëÇÑ ¼ö(´ÜÀ§ : m/s^2)
-#define ATM 101.325  // ´ë±â¾Ğ¿¡¼­ÀÇ ¾Ğ·Â(´ÜÀ§ : kPa)
-#define TEM 15.00  // Ç¥ÁØ´ë±â¿Âµµ(´ÜÀ§ : 'C)
-#define DIM_TEM 0.0065  // ´ë±â¿¡¼­ ¿Âµµ °¨¼ÒÀ² (´ÜÀ§ : K/m)
-#define R_RHO 0.287  // ¹Ğµµ¿¡¼­ ±âÃ¼»ó¼ö(´ÜÀ§ : J/(mol/K))
-#define R_PRE 8.314  // ¾Ğ·Â¿¡¼­ ±âÃ¼»ó¼ö(´ÜÀ§ : J/(mol/K))
+#define START 1111  // ì‹œì‘ì— ëŒ€í•œ ìˆ˜ 
+#define END 0000  // ì¢…ë£Œì— ëŒ€í•œ ìˆ˜
+#define ENERGY 2222  // ì—ë„ˆì§€ ë°©ì •ì‹ì— ëŒ€í•œ ìˆ˜
+#define PRESSURE 3333  //  ì••ë ¥ ë°©ì •ì‹ì— ëŒ€í•œ ìˆ˜
+#define HEAD 4444  // ìˆ˜ë‘ ë°©ì •ì‹ì— ëŒ€í•œ ìˆ˜
+#define G 9.81  // ì¤‘ë ¥ê°€ì†ë„ì— ëŒ€í•œ ìˆ˜(ë‹¨ìœ„ : m/s^2)
+#define ATM 101.325  // ëŒ€ê¸°ì••ì—ì„œì˜ ì••ë ¥(ë‹¨ìœ„ : kPa)
+#define TEM 15.00  // í‘œì¤€ëŒ€ê¸°ì˜¨ë„(ë‹¨ìœ„ : 'C)
+#define DIM_TEM 0.0065  // ëŒ€ê¸°ì—ì„œ ì˜¨ë„ ê°ì†Œìœ¨ (ë‹¨ìœ„ : K/m)
+#define R_RHO 0.287  // ë°€ë„ì—ì„œ ê¸°ì²´ìƒìˆ˜(ë‹¨ìœ„ : J/(mol/K))
+#define R_PRE 8.314  // ì••ë ¥ì—ì„œ ê¸°ì²´ìƒìˆ˜(ë‹¨ìœ„ : J/(mol/K))
 #define MAIR 0.0289
-#define MAX_ALTITUDE 13100  // Ç×°ø±â ÃÖ´ë ºñÇà °íµµ(´ÜÀ§ : m)
-#define CHANGE_K 273.15  // ÄÌºó¿¡¼­ ¼·¾¾ È¤Àº ¼·¾¾¿¡¼­ ÄÌºóÀ¸·Î º¯È­½ÃÅ°´Â ¼ö
-#define NUM_TEN 10  // '10'¿¡ ´ëÇÑ ¼ö
+#define MAX_ALTITUDE 13100  // í•­ê³µê¸° ìµœëŒ€ ë¹„í–‰ ê³ ë„(ë‹¨ìœ„ : m)
+#define CHANGE_K 273.15  // ì¼ˆë¹ˆì—ì„œ ì„­ì”¨ í˜¹ì€ ì„­ì”¨ì—ì„œ ì¼ˆë¹ˆìœ¼ë¡œ ë³€í™”ì‹œí‚¤ëŠ” ìˆ˜
+#define NUM_TEN 10  // '10'ì— ëŒ€í•œ ìˆ˜
 
-int get_system(void);  // ¹æÁ¤½Ä ¼±ÅÃ ¹× Á¾·á¿¡ ´ëÇÑ ÇÔ¼ö ¼³Á¤
-double get_alititude(void);  // °íµµÀÔ·Â¿¡ ´ëÇÑ ÇÔ¼ö ¼³Á¤
-double get_temperature(double y);  // °íµµ¿¡ µû¸¥ ¿Âµµ º¯È­ ÇÔ¼ö ¼³Á¤
-double get_rho(double x);  // °íµµ¿¡ µû¸¥ ¹Ğµµ º¯È­ ÇÔ¼ö ¼³Á¤
-double get_pressure(double n);  // °íµµ¿¡ µû¸¥ ¾Ğ·Â º¯È­ ÇÔ¼ö ¼³Á¤
-double out_result(double a, double b, double c, double d, double e, double f);  // ÃÖÁ¾°á°ú°ª ÇÔ¼ö ¼³Á¤
+int get_system(void);  // ë°©ì •ì‹ ì„ íƒ ë° ì¢…ë£Œì— ëŒ€í•œ í•¨ìˆ˜ ì„¤ì •
+double get_alititude(void);  // ê³ ë„ì…ë ¥ì— ëŒ€í•œ í•¨ìˆ˜ ì„¤ì •
+double get_temperature(double y);  // ê³ ë„ì— ë”°ë¥¸ ì˜¨ë„ ë³€í™” í•¨ìˆ˜ ì„¤ì •
+double get_rho(double x);  // ê³ ë„ì— ë”°ë¥¸ ë°€ë„ ë³€í™” í•¨ìˆ˜ ì„¤ì •
+double get_pressure(double n);  // ê³ ë„ì— ë”°ë¥¸ ì••ë ¥ ë³€í™” í•¨ìˆ˜ ì„¤ì •
+double out_result(double a, double b, double c, double d, double e, double f);  // ìµœì¢…ê²°ê³¼ê°’ í•¨ìˆ˜ ì„¤ì •
 
 int main(void)
 {
-	int sys = 0;  // ½ÃÀÛ È¤Àº Á¾·á¿¡ ´ëÇØ ÀúÀåÇÒ º¯¼ö
-	int equ = 0;  // ¹æÁ¤½ÄÀ» ºĞ·ùÇÏ´Â µ¥ ÀúÀåÇÒ º¯¼ö
-	double res = 0.0;  // º£¸£´©ÀÌ ¹æÁ¤½Ä °á°ú°ªÀ» ÀúÀåÇÒ º¯¼ö 
-	double nATM = ATM;  // Ç¥ÁØ´ë±â¾Ğ º¯¼ö (´ÜÀ§ : kPa)
-	double nP = 0.0;  // ¾Ğ·ÂÀ» ÀúÀåÇÒ º¯¼ö (´ÜÀ§ : kPa)
-	double nV = 0.0;  // ¼Óµµ¸¦ ÀúÀåÇÒ º¯¼ö(´ÜÀ§ : m/s)
-	double nH = 0.0;  // °íµµ¸¦ ÀúÀåÇÒ º¯¼ö (´ÜÀ§ : m)
-	double nTEM = 0.0;  // ¿Âµµ¸¦ ÀúÀåÇÒ º¯¼ö(´ÜÀ§ : K)
-	double sum_Pa = 0.0;  // °íµµ¿¡ µû¸¥ ¾Ğ·Â º¯È­°ª (´ÜÀ§ : kPa)
-	double nRHO = 0.0; // °íµµ¿¡ µû¸¥ ¹Ğµµ º¯È­°ª (´ÜÀ§ : kg/m^3)
-	double nRES = 0.0; // ÃÖÁ¾ °á°ú°ª ÀúÀåÇÒ º¯¼ö
+	int sys = 0;  // ì‹œì‘ í˜¹ì€ ì¢…ë£Œì— ëŒ€í•´ ì €ì¥í•  ë³€ìˆ˜
+	int equ = 0;  // ë°©ì •ì‹ì„ ë¶„ë¥˜í•˜ëŠ” ë° ì €ì¥í•  ë³€ìˆ˜
+	double res = 0.0;  // ë² ë¥´ëˆ„ì´ ë°©ì •ì‹ ê²°ê³¼ê°’ì„ ì €ì¥í•  ë³€ìˆ˜ 
+	double nATM = ATM;  // í‘œì¤€ëŒ€ê¸°ì•• ë³€ìˆ˜ (ë‹¨ìœ„ : kPa)
+	double nP = 0.0;  // ì••ë ¥ì„ ì €ì¥í•  ë³€ìˆ˜ (ë‹¨ìœ„ : kPa)
+	double nV = 0.0;  // ì†ë„ë¥¼ ì €ì¥í•  ë³€ìˆ˜(ë‹¨ìœ„ : m/s)
+	double nH = 0.0;  // ê³ ë„ë¥¼ ì €ì¥í•  ë³€ìˆ˜ (ë‹¨ìœ„ : m)
+	double nTEM = 0.0;  // ì˜¨ë„ë¥¼ ì €ì¥í•  ë³€ìˆ˜(ë‹¨ìœ„ : K)
+	double sum_Pa = 0.0;  // ê³ ë„ì— ë”°ë¥¸ ì••ë ¥ ë³€í™”ê°’ (ë‹¨ìœ„ : kPa)
+	double nRHO = 0.0; // ê³ ë„ì— ë”°ë¥¸ ë°€ë„ ë³€í™”ê°’ (ë‹¨ìœ„ : kg/m^3)
+	double nRES = 0.0; // ìµœì¢… ê²°ê³¼ê°’ ì €ì¥í•  ë³€ìˆ˜
 
-	printf("This is a limiting condition.\n");  // Á¦ÇÑÁ¶°Ç¿¡ ´ëÇÑ ¼³¸í Ãâ·Â
+	printf("This is a limiting condition.\n");  // ì œí•œì¡°ê±´ì— ëŒ€í•œ ì„¤ëª… ì¶œë ¥
 	printf("First, This is normal flow.\n");
 	printf("Sceond, Viscosity effects are ignored.\n");
 	printf("Third, Incompressible flow.\n");
 	printf("Would you like to start a program to calculate Bernoulli's equation?\n");
-	printf("Enter the Stat is (1111) and End is (0000): ");  // ½ÃÀÛ È¤Àº Á¾·á ÇÒÁö ÀÔ·Â
-	scanf_s("%d", &sys);  // ½ÃÀÛ È¤Àº Á¾·á¿¡ ´ëÇÑ º¯¼ö¿¡ ÀúÀå
+	printf("Enter the Stat is (1111) and End is (0000): ");  // ì‹œì‘ í˜¹ì€ ì¢…ë£Œ í• ì§€ ì…ë ¥
+	scanf_s("%d", &sys);  // ì‹œì‘ í˜¹ì€ ì¢…ë£Œì— ëŒ€í•œ ë³€ìˆ˜ì— ì €ì¥
 
 	while (true)
 	{
-		if (sys == START) // ½ÃÀÛ¿¡ ´ëÇÑ º¯¼öÀÏ °æ¿ì
+		if (sys == START) // ì‹œì‘ì— ëŒ€í•œ ë³€ìˆ˜ì¼ ê²½ìš°
 		{
 			equ = get_system();
 
-			if (equ == ENERGY)  // ¿¡³ÊÁö ¹æÁ¤½Ä¿¡ ´ëÇÑ º¯¼ö ÀÏ °æ¿ì
+			if (equ == ENERGY)  // ì—ë„ˆì§€ ë°©ì •ì‹ì— ëŒ€í•œ ë³€ìˆ˜ ì¼ ê²½ìš°
 			{
-				nH = get_alititude();  // °íµµÀÔ·Â¿¡ ´ëÇÑ ÇÔ¼ö È£Ãâ
+				nH = get_alititude();  // ê³ ë„ì…ë ¥ì— ëŒ€í•œ í•¨ìˆ˜ í˜¸ì¶œ
 
-				nP = get_pressure(nH);  // ¾Ğ·ÂÀ» ±¸ÇÏ±â À§ÇÑ ÇÔ¼ö È£Ãâ
-				nRHO = get_rho(nH);  // ¹Ğµµ¸¦ ±¸ÇÏ±â À§ÇÑ ÇÔ¼ö È£Ãâ
-				nTEM = get_temperature(nH);  // ¿Âµµ¸¦ ±¸ÇÏ±â À§ÇÑ ÇÔ¼ö È£Ãâ ÈÄ ¼·¾¾ º¯È¯
-				nV = sqrt(2 * (nATM - nP) / nRHO);  // º£¸£´©ÀÌ ¹æÁ¤½ÄÀ» ÀÌ¿ëÇÑ ¼Óµµ ±¸ÇÏ´Â °ø½Ä
+				nP = get_pressure(nH);  // ì••ë ¥ì„ êµ¬í•˜ê¸° ìœ„í•œ í•¨ìˆ˜ í˜¸ì¶œ
+				nRHO = get_rho(nH);  // ë°€ë„ë¥¼ êµ¬í•˜ê¸° ìœ„í•œ í•¨ìˆ˜ í˜¸ì¶œ
+				nTEM = get_temperature(nH);  // ì˜¨ë„ë¥¼ êµ¬í•˜ê¸° ìœ„í•œ í•¨ìˆ˜ í˜¸ì¶œ í›„ ì„­ì”¨ ë³€í™˜
+				nV = sqrt(2 * (nATM - nP) / nRHO);  // ë² ë¥´ëˆ„ì´ ë°©ì •ì‹ì„ ì´ìš©í•œ ì†ë„ êµ¬í•˜ëŠ” ê³µì‹
 				
-				res = (nP / nRHO) + (0.5 * pow(nV, 2)) + (G * nH);  // ¿¡³ÊÁö ¹æÁ¤½Ä °á°ú°ª °è»ê
+				res = (nP / nRHO) + (0.5 * pow(nV, 2)) + (G * nH);  // ì—ë„ˆì§€ ë°©ì •ì‹ ê²°ê³¼ê°’ ê³„ì‚°
 
-				nRES = out_result(nH, nP, nRHO, nTEM, nV, res);  // ÃÖÁ¾°á°ú°ª ÇÔ¼ö È£Ãâ
+				nRES = out_result(nH, nP, nRHO, nTEM, nV, res);  // ìµœì¢…ê²°ê³¼ê°’ í•¨ìˆ˜ í˜¸ì¶œ
 			}
-			else if (equ == PRESSURE)  // ¾Ğ·Â ¹æÁ¤½Ä¿¡ ´ëÇÑ º¯¼ö ÀÏ °æ¿ì
+			else if (equ == PRESSURE)  // ì••ë ¥ ë°©ì •ì‹ì— ëŒ€í•œ ë³€ìˆ˜ ì¼ ê²½ìš°
 			{
-				nH = get_alititude();  // °íµµÀÔ·Â¿¡ ´ëÇÑ ÇÔ¼ö È£Ãâ
+				nH = get_alititude();  // ê³ ë„ì…ë ¥ì— ëŒ€í•œ í•¨ìˆ˜ í˜¸ì¶œ
 
 				nP = get_pressure(nH);
 				nRHO = get_rho(nH);
 				nTEM = get_temperature(nH);
 				nV = sqrt(2 * (nATM - nP) / nRHO);
 
-				res = nP + (0.5 * nRHO * pow(nV, 2) + (nRHO * G * nH));  // ¾Ğ·Â ¹æÁ¤½Ä °á°ú°ª °è»ê
+				res = nP + (0.5 * nRHO * pow(nV, 2) + (nRHO * G * nH));  // ì••ë ¥ ë°©ì •ì‹ ê²°ê³¼ê°’ ê³„ì‚°
 
-				nRES = out_result(nH, nP, nRHO, nTEM, nV, res);  // ÃÖÁ¾°á°ú°ª ÇÔ¼ö È£Ãâ
+				nRES = out_result(nH, nP, nRHO, nTEM, nV, res);  // ìµœì¢…ê²°ê³¼ê°’ í•¨ìˆ˜ í˜¸ì¶œ
 			}
-			else if (equ == HEAD)  // ¼öµÎ ¹æÁ¤½Ä¿¡ ´ëÇÑ º¯¼ö ÀÏ °æ¿ì
+			else if (equ == HEAD)  // ìˆ˜ë‘ ë°©ì •ì‹ì— ëŒ€í•œ ë³€ìˆ˜ ì¼ ê²½ìš°
 			{
-				nH = get_alititude();  // °íµµÀÔ·Â¿¡ ´ëÇÑ ÇÔ¼ö È£Ãâ
+				nH = get_alititude();  // ê³ ë„ì…ë ¥ì— ëŒ€í•œ í•¨ìˆ˜ í˜¸ì¶œ
 
 				nP = get_pressure(nH);
 				nRHO = get_rho(nH);
 				nTEM = get_temperature(nH);
 				nV = sqrt(2 * (nATM - nP) / nRHO);
 
-				res = nP / (nRHO * G) + (pow(nV, 2) / (2.0 * G)) + nH;  // ¼öµÎ ¹æÁ¤½Ä °á°ú°ª °è»ê
+				res = nP / (nRHO * G) + (pow(nV, 2) / (2.0 * G)) + nH;  // ìˆ˜ë‘ ë°©ì •ì‹ ê²°ê³¼ê°’ ê³„ì‚°
 
-				nRES = out_result(nH, nP, nRHO, nTEM, nV, res);  // ÃÖÁ¾°á°ú°ª ÇÔ¼ö È£Ãâ
+				nRES = out_result(nH, nP, nRHO, nTEM, nV, res);  // ìµœì¢…ê²°ê³¼ê°’ í•¨ìˆ˜ í˜¸ì¶œ
 			}
-			else if (equ == END)  // Á¾·á¿¡ ´ëÇÑ º¯¼ö ÀÏ °æ¿ì
+			else if (equ == END)  // ì¢…ë£Œì— ëŒ€í•œ ë³€ìˆ˜ ì¼ ê²½ìš°
 			{
-				printf("Exit the program.\n");  // ÇÁ·Î±×·¥ Á¾·á Ãâ·Â
-				break;  // ¹İº¹¹® Å»Ãâ
+				printf("Exit the program.\n");  // í”„ë¡œê·¸ë¨ ì¢…ë£Œ ì¶œë ¥
+				break;  // ë°˜ë³µë¬¸ íƒˆì¶œ
 			}
 			}
-			else if (equ != END || equ != ENERGY || equ != PRESSURE || equ != HEAD)  // ¹æÁ¤½Ä ¹× Á¾·á¸¦ ºĞ·ùÇÏ´Â ¹üÀ§¿¡ ¼ö°¡ ¾Æ´Ò°æ¿ì
+			else if (equ != END || equ != ENERGY || equ != PRESSURE || equ != HEAD)  // ë°©ì •ì‹ ë° ì¢…ë£Œë¥¼ ë¶„ë¥˜í•˜ëŠ” ë²”ìœ„ì— ìˆ˜ê°€ ì•„ë‹ê²½ìš°
 			{
-				printf("Return again\n");  // ´Ù½ÃÇÏ±â¸¦ Ãâ·Â
+				printf("Return again\n");  // ë‹¤ì‹œí•˜ê¸°ë¥¼ ì¶œë ¥
 			}
 		else if (sys == END)
 		{
@@ -108,7 +108,7 @@ int main(void)
 		}
 		else
 		{
-			printf("Return again\n");  // ´Ù½ÃÇÏ±â¸¦ Ãâ·Â
+			printf("Return again\n");  // ë‹¤ì‹œí•˜ê¸°ë¥¼ ì¶œë ¥
 			continue;
 		}
 	}
@@ -116,73 +116,73 @@ int main(void)
 	return 0;
 }
 
-int get_system(void)// ¹æÁ¤½Ä ¼±ÅÃ ¹× Á¾·á¿¡ ´ëÇÑ ÇÔ¼ö Á¤ÀÇ
+int get_system(void)// ë°©ì •ì‹ ì„ íƒ ë° ì¢…ë£Œì— ëŒ€í•œ í•¨ìˆ˜ ì •ì˜
 {
-	int temp = 0;  // »ç¿ëÇÒ ¹æÁ¤½Ä ¹× Á¾·á¿¡ ´ëÇÑ º¯¼ö¿¡ ÀúÀå
+	int temp = 0;  // ì‚¬ìš©í•  ë°©ì •ì‹ ë° ì¢…ë£Œì— ëŒ€í•œ ë³€ìˆ˜ì— ì €ì¥
 	printf("\n");
-	printf("Enter the view\n");  // "º¸±â¸¦ º¸°í ÀÔ·ÂÇÏ¼¼¿ä" Ãâ·Â
-	printf("energy is (2222)\n");  // (2222)¹øÀº ¿¡³ÊÁö ¹æÁ¤½ÄÀ» Ãâ·Â
-	printf("pressure is (3333)\n");  // (3333)¹øÀº ¾Ğ·Â ¹æÁ¤½ÄÀ» Ãâ·Â
-	printf("headis is (4444)\n");  // (4444)´Â ¼öµÎ ¹æÁ¤½ÄÀ» Ãâ·Â
-	printf("End is (0000)\n");  // (0000)Àº Á¾·á¸¦ Ãâ·Â
-	printf("Decide which equation to use : ");  // ¾î¶² ¹æÁ¤½ÄÀ» »ç¿ëÇÒ°ÇÁö Ãâ·Â
-	scanf_s("%d", &temp);  // »ç¿ëÇÒ ¹æÁ¤½Ä ¹× Á¾·á¿¡ ´ëÇÑ º¯¼ö¿¡ ÀúÀå
+	printf("Enter the view\n");  // "ë³´ê¸°ë¥¼ ë³´ê³  ì…ë ¥í•˜ì„¸ìš”" ì¶œë ¥
+	printf("energy is (2222)\n");  // (2222)ë²ˆì€ ì—ë„ˆì§€ ë°©ì •ì‹ì„ ì¶œë ¥
+	printf("pressure is (3333)\n");  // (3333)ë²ˆì€ ì••ë ¥ ë°©ì •ì‹ì„ ì¶œë ¥
+	printf("headis is (4444)\n");  // (4444)ëŠ” ìˆ˜ë‘ ë°©ì •ì‹ì„ ì¶œë ¥
+	printf("End is (0000)\n");  // (0000)ì€ ì¢…ë£Œë¥¼ ì¶œë ¥
+	printf("Decide which equation to use : ");  // ì–´ë–¤ ë°©ì •ì‹ì„ ì‚¬ìš©í• ê±´ì§€ ì¶œë ¥
+	scanf_s("%d", &temp);  // ì‚¬ìš©í•  ë°©ì •ì‹ ë° ì¢…ë£Œì— ëŒ€í•œ ë³€ìˆ˜ì— ì €ì¥
 	return temp;
 }
 
-double get_alititude(void)  // ¹æÁ¤½ÄÀ» ºĞ·ùÇÏ´Â µ¥ ÀúÀåÇÒ º¯¼ö
+double get_alititude(void)  // ë°©ì •ì‹ì„ ë¶„ë¥˜í•˜ëŠ” ë° ì €ì¥í•  ë³€ìˆ˜ì— ê´€í•œ í•¨ìˆ˜ ì •ì˜
 {
 	double temp = 0.0;
-	printf("Please enter your alititude(m) : ");  // °íµµ(³ôÀÌ)¸¦ ÀÔ·Â ¹ŞÀ½(´ÜÀ§ : m)
-	scanf_s("%lf", &temp);  // °íµµ(³ôÀÌ)¿¡ ´ëÇÑ º¯¼ö ÀúÀå
+	printf("Please enter your alititude(m) : ");  // ê³ ë„(ë†’ì´)ë¥¼ ì…ë ¥ ë°›ìŒ(ë‹¨ìœ„ : m)
+	scanf_s("%lf", &temp);  // ê³ ë„(ë†’ì´)ì— ëŒ€í•œ ë³€ìˆ˜ ì €ì¥
 	return temp;
 }
 
-double get_temperature(double y)  // °íµµ¿¡ µû¸¥ ¿Âµµ º¯È­ ÇÔ¼ö Á¤ÀÇ
+double get_temperature(double y)  // ê³ ë„ì— ë”°ë¥¸ ì˜¨ë„ ë³€í™” í•¨ìˆ˜ ì •ì˜
 {
-	double temp = 0.0;  // ¾Ğ·Â °á°ú°ª¿¡ ´ëÇÑ º¯¼ö ÁöÁ¤
-	temp = TEM - ((y / NUM_TEN) * (DIM_TEM * NUM_TEN));  // °íµµ¿¡ µû¸¥ ¿Âµµ º¯È­ °ø½Ä
+	double temp = 0.0;  // ì••ë ¥ ê²°ê³¼ê°’ì— ëŒ€í•œ ë³€ìˆ˜ ì§€ì •
+	temp = TEM - ((y / NUM_TEN) * (DIM_TEM * NUM_TEN));  // ê³ ë„ì— ë”°ë¥¸ ì˜¨ë„ ë³€í™” ê³µì‹
 	return temp;
 }	
 
-double get_rho(double x)  // °íµµ¿¡ µû¸¥ ¹Ğµµ º¯È­ ÇÔ¼ö Á¤ÀÇ
+double get_rho(double x)  // ê³ ë„ì— ë”°ë¥¸ ë°€ë„ ë³€í™” í•¨ìˆ˜ ì •ì˜
 {
-	double temp = 0.0;  // ¹Ğµµ °á°ú°ª¿¡ ´ëÇÑ º¯¼ö ÁöÁ¤
-	double temp_P = 0.0;  // ¹Ğµµ¸¦ °è»êÇÏ±â À§ÇÑ ¾Ğ·Â°ª ÁöÁ¤ 
-	double temp_T = 0.0;  // ¹Ğµµ¸¦ °è»êÇÏ±â À§ÇÑ ¿Âµµ°ª ÁöÁ¤
+	double temp = 0.0;  // ë°€ë„ ê²°ê³¼ê°’ì— ëŒ€í•œ ë³€ìˆ˜ ì§€ì •
+	double temp_P = 0.0;  // ë°€ë„ë¥¼ ê³„ì‚°í•˜ê¸° ìœ„í•œ ì••ë ¥ê°’ ì§€ì • 
+	double temp_T = 0.0;  // ë°€ë„ë¥¼ ê³„ì‚°í•˜ê¸° ìœ„í•œ ì˜¨ë„ê°’ ì§€ì •
 
-	temp_P = get_pressure(x);  // ¾Ğ·Â ±¸ÇÏ´Â ÇÔ¼ö È£Ãâ
-	temp_T = get_temperature(x);  // ¿Âµµ ±¸ÇÏ´Â ÇÔ¼ö È£Ãâ
-	temp = temp_P / (R_RHO * (temp_T + CHANGE_K));  // °íµµ¿¡ ¹Ğµµ º¯È­ ï½Ä
+	temp_P = get_pressure(x);  // ì••ë ¥ êµ¬í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
+	temp_T = get_temperature(x);  // ì˜¨ë„ êµ¬í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
+	temp = temp_P / (R_RHO * (temp_T + CHANGE_K));  // ê³ ë„ì— ë°€ë„ ë³€í™” Âç¯€
 
 	return temp;
 }
 
-double get_pressure(double n)  // °íµµ¿¡ µû¸¥ ¾Ğ·Â º¯È­ ÇÔ¼ö Á¤ÀÇ
+double get_pressure(double n)  // ê³ ë„ì— ë”°ë¥¸ ì••ë ¥ ë³€í™” í•¨ìˆ˜ ì •ì˜
 {
-	double temp = 0.0;  // ¾Ğ·Â °á°ú°ª¿¡ ´ëÇÑ º¯¼ö ÁöÁ¤
+	double temp = 0.0;  // ì••ë ¥ ê²°ê³¼ê°’ì— ëŒ€í•œ ë³€ìˆ˜ ì§€ì •
 	if (n < MAX_ALTITUDE || n >= 0)
 	{
-		temp = ATM * pow(1.0 - (n * DIM_TEM) / (TEM+CHANGE_K), (G * MAIR) / (R_PRE * DIM_TEM));  // °íµµ¿¡ ¾Ğ·Â º¯È¯ °ø½Ä
+		temp = ATM * pow(1.0 - (n * DIM_TEM) / (TEM+CHANGE_K), (G * MAIR) / (R_PRE * DIM_TEM));  // ê³ ë„ì— ì••ë ¥ ë³€í™˜ ê³µì‹
 		return temp;
 	}
-	else if (n >= MAX_ALTITUDE || n < 0)  // 0km ÀÌÇÏ, 13.1km ÀÌ»óÀÏ °æ¿ì
+	else if (n >= MAX_ALTITUDE || n < 0)  // 0km ì´í•˜, 13.1km ì´ìƒì¼ ê²½ìš°
 	{
-		printf("return again\n");  // ´Ù½ÃÇÏ±â Ãâ·Â
+		printf("return again\n");  // ë‹¤ì‹œí•˜ê¸° ì¶œë ¥
 		return 0;  
 	}
 }
 
-double out_result(double a, double b, double c, double d, double e, double f)  // ÃÖÁ¾°á°ú°ª ÇÔ¼ö Á¤ÀÇ
+double out_result(double a, double b, double c, double d, double e, double f)  // ìµœì¢…ê²°ê³¼ê°’ í•¨ìˆ˜ ì •ì˜
 {
 
 	printf("\n");
-	printf("When altitude is %.2lf(m)\n", a);  // "°íµµ°¡ '00'mÀÏ ¶§" Ãâ·Â
-	printf("Pressure : %.3lf(kPa)\n", b);  // "¾Ğ·Â °á°ú°ª" Ãâ·Â
-	printf("Density : %.3lf(kg/m^3)\n", c);  // "¿Âµµ °á°ú°ª" Ãâ·Â
-	printf("Temperature : %.3lf('C)\n", d);  // "¼Óµµ °á°ú°ª" Ãâ·Â
-	printf("Speed : %.3lf(m/s)\n", e);  // "¹Ğµµ °á°ú°ª" Ãâ·Â
-	printf("Constants in Bernoulli's height equation : %.2lf\n", f);  // º£¸£´©ÀÌ ¹æÁ¤½Ä °á°ú°ª Ãâ·Â
+	printf("When altitude is %.2lf(m)\n", a);  // "ê³ ë„ê°€ '00'mì¼ ë•Œ" ì¶œë ¥
+	printf("Pressure : %.3lf(kPa)\n", b);  // "ì••ë ¥ ê²°ê³¼ê°’" ì¶œë ¥
+	printf("Density : %.3lf(kg/m^3)\n", c);  // "ì˜¨ë„ ê²°ê³¼ê°’" ì¶œë ¥
+	printf("Temperature : %.3lf('C)\n", d);  // "ì†ë„ ê²°ê³¼ê°’" ì¶œë ¥
+	printf("Speed : %.3lf(m/s)\n", e);  // "ë°€ë„ ê²°ê³¼ê°’" ì¶œë ¥
+	printf("Constants in Bernoulli's height equation : %.2lf\n", f);  // ë² ë¥´ëˆ„ì´ ë°©ì •ì‹ ê²°ê³¼ê°’ ì¶œë ¥
 
 	return a, b, c, d, e, f;
 }
