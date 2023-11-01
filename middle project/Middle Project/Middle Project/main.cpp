@@ -138,7 +138,7 @@ double get_alititude(void)  // 방정식을 분류하는 데 저장할 변수에
 	return temp;
 }
 
-double get_temperature(double y)  // 고도에 따른 온도 변화 함수 정의
+double get_temperature(double y)  // 고도에 따른 온도 변환 함수 정의
 {
 	double temp = 0.0;  // 압력 결과값에 대한 변수 지정
 	temp = TEM - ((y / NUM_TEN) * (DIM_TEM * NUM_TEN));  // 고도에 따른 온도 변화 공식
