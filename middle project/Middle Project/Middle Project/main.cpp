@@ -153,7 +153,7 @@ double get_rho(double x)  // 고도에 따른 밀도 변화 함수 정의
 
 	temp_P = get_pressure(x);  // 압력 구하는 함수 호출
 	temp_T = get_temperature(x);  // 온도 구하는 함수 호출
-	temp = temp_P / (R_RHO * (temp_T + CHANGE_K));  // 고도에 밀도 변화 節
+	temp = temp_P / (R_RHO * (temp_T + CHANGE_K));  // 고도에 밀도 변화 공식
 
 	return temp;
 }
