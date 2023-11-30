@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define FOUR 4
 #define FIVE 5
-#definr SIX 6
+#define SIX 6
 
 int main(void)
 {
