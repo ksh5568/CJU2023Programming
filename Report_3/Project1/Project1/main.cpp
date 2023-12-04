@@ -23,7 +23,7 @@ void line_up(int* sor)
 	{
 		for (j = i; j < MAX_NUM; j++)
 		{
-			if (sor[i] < sor[j])swap(&sor[i], &sor[j]);
+			if (sor[i] > sor[j])swap(&sor[i], &sor[j]);
 		}
 	}
 }
@@ -39,7 +39,7 @@ void line_down(int* sor)
 	{
 		for (j = i; j < MAX_NUM; j++)
 		{
-			if (sor[i] > sor[j])swap(&sor[i], &sor[j]);
+			if (sor[i] < sor[j])swap(&sor[i], &sor[j]);
 		}
 	}
 }
