@@ -1,26 +1,28 @@
 #include <stdio.h>
+#define ONE 1.0
+#define TWO 2
 
-// 'Determinant'¸¦ ±¸ÇÏ´Â ÇÔ¼ö Á¤ÀÇ
+// 'Determinant'ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜ ì •ì˜
 double Determinant(double matrix[2][2])
 {
 	return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
 }
 
-// Çà·ÄÀ» °è»êÇÏ´Â ÇÔ¼ö Á¤ÀÇ
+// í–‰ë ¬ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜ ì •ì˜
 void Calculate_Matrix(double matrix[2][2], double inverse[2][2])
 {
 	double det = Determinant(matrix);
 
 	if (det != 0)
 	{
-		double indet = 1.0 / det;
+		double indet = ONE / det;
 
 		inverse[0][0] = matrix[1][1] * indet;
 		inverse[0][1] = -matrix[0][1] * indet;
 		inverse[1][0] = -matrix[1][0] * indet;
 		inverse[1][1] = matrix[0][0] * indet;
 	}
-	else  // ¿À·ù°¡ ÀÖÀ»½Ã ´Ù½Ã ÀÔ·Â ¹Şµµ·Ï ¼³Á¤
+	else  // ì˜¤ë¥˜ê°€ ìˆì„ì‹œ ë‹¤ì‹œ ì…ë ¥ ë°›ë„ë¡ ì„¤ì •
 	{
 		printf("Please enter again.\n");
 	}
@@ -28,33 +30,33 @@ void Calculate_Matrix(double matrix[2][2], double inverse[2][2])
 
 int main(void)
 {
-	// °¢ º¯¼ö ÃÊ±âÈ­
+	// ê° ë³€ìˆ˜ ì´ˆê¸°í™”
 	double matrix[2][2] = { 0 };
 	double inverse[2][2] = { 0 };
 	int i = 0, j = 0;
 
 	printf("Enter the 2x2 matrix\n");
 
-	// Çà°ú ¿­¿¡ ¸Â°Ô ¼ö¸¦ ÀÔ·Â ¹Ş´Â ¹İº¹¹® Ãâ·Â
-	for (i = 0; i < 2; i++)
+	// í–‰ê³¼ ì—´ì— ë§ê²Œ ìˆ˜ë¥¼ ì…ë ¥ ë°›ëŠ” ë°˜ë³µë¬¸ ì¶œë ¥
+	for (i = 0; i < TWO; i++)
 	{
-		for (j = 0; j < 2; j++)
+		for (j = 0; j < TWO; j++)
 		{
 			printf("Enter the [%d][%d] : ", i, j);
 			scanf_s("%lf", &matrix[i][j]);
 		}
 	}
 
-	// Çà·Ä °è»êÇÏ´Â ÇÔ¼ö È£Ãâ
+	// í–‰ë ¬ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
 	Calculate_Matrix(matrix, inverse);
 
-	// °á°ú°ª Ãâ·Â
+	// ê²°ê³¼ê°’ ì¶œë ¥
 	printf("\n");
 	printf("Result...\n");
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < TWO; i++)
 	{
 		printf("|");
-		for (j = 0; j < 2; j++)
+		for (j = 0; j < TWO; j++)
 		{
 			printf("%5.2f|", inverse[i][j]);
 		}
