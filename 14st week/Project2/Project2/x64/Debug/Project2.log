@@ -1,0 +1,3 @@
+﻿  main.c
+C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\14st week\Project2\Project2\main.c(9,5): warning C4047: '=': 'FILE *'의 간접 참조 수준이 'errno_t'과(와) 다릅니다.
+  Project2.vcxproj -> C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\14st week\Project2\x64\Debug\Project2.exe
