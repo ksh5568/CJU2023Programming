@@ -32,13 +32,19 @@ void Distance_vector(Num i_list)
 	double n_vol = 0;
 	double n_res = 0;
 
-	n_dot = (i_list.nA * i_list.nX + i_list.nB * i_list.nY);
-	n_vol = sqrt(pow(i_list.nA, 2) + pow(i_list.nB, 2));
+	// 2차 방정식에서의 방향 벡터
+	double la_vector = - (i_list.nA / i_list.nC);
+	double lb_vector = - (i_list.nA / i_list.nB);
+
+	n_dot = (la_vector * i_list.nX) + (lb_vector * i_list.nY);  // 벡터의 내적을 계산
+	n_vol = sqrt(pow(la_vector, 2) + pow(lb_vector, 2));  // 벡터의 크기 계산
 
 	n_res = fabs(n_dot) / n_vol;
 
 	// 두번째 결과값 출력
 	printf("Result_Distance#2 : %.2lf\n", n_res);
+	printf("Result_Distance#2 : %.2lf\n", la_vector);
+	printf("Result_Distance#2 : %.2lf\n", lb_vector);
 }
 
 int main(void)
