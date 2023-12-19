@@ -3,59 +3,57 @@
 
 #define D_NUMBER {-5, 3, 3, -4, 3}
 
-// ±¸Á¶Ã¼ Á¤ÀÇ
+// êµ¬ì¡°ì²´ ì •ì˜
 typedef struct
 {
-	double nX;  // ÇÑÁ¡ÀÇ xÁÂÇ¥
-	double nY;  // ÇÑÁ¡ÀÇ yÁÂÇ¥
-	double nA;  // 2Â÷ ¹æÁ¤½ÄÀÇ a°ª
-	double nB;  // 2Â÷ ¹æÁ¤½ÄÀÇ b°ª
-	double nC;  // 2Â÷ ¹æÁ¤½ÄÀÇ c°ª
+	double nX;  // í•œì ì˜ xì¢Œí‘œ
+	double nY;  // í•œì ì˜ yì¢Œí‘œ
+	double nA;  // 2ì°¨ ë°©ì •ì‹ì˜ aê°’
+	double nB;  // 2ì°¨ ë°©ì •ì‹ì˜ bê°’
+	double nC;  // 2ì°¨ ë°©ì •ì‹ì˜ cê°’
 
 }Num;
 
-// °íµîÇĞ±³ ¼öÇĞ°úÁ¤¿¡¼­ ÃÖ´Ü°Å¸® ±¸ÇÏ´Â °ø½Ä ÇÔ¼ö Á¤ÀÇ
+// ê³ ë“±í•™êµ ìˆ˜í•™ê³¼ì •ì—ì„œ ìµœë‹¨ê±°ë¦¬ êµ¬í•˜ëŠ” ê³µì‹ í•¨ìˆ˜ ì •ì˜
 void Distance_Calculation(Num i_list)
 {
 	double temp = 0;
 
 	temp = fabs((i_list.nA * i_list.nX) + (i_list.nB * i_list.nY) + i_list.nC) / (sqrt(pow(i_list.nA, 2) + pow(i_list.nB, 2)));
 	
-	// Ã¹¹øÂ° °á°ú°ª Ãâ·Â
+	// ì²«ë²ˆì§¸ ê²°ê³¼ê°’ ì¶œë ¥
 	printf("Result_Distance#1 : %.2lf\n", temp);
 }
 
-// ¹éÅÍ ³»ÀûÀ» ÀÌ¿ëÇÑ ÃÖ´Ü°Å¸® ±¸ÇÏ´Â °ø½Ä ÇÔ¼ö Á¤ÀÇ
+// ë°±í„° ë‚´ì ì„ ì´ìš©í•œ ìµœë‹¨ê±°ë¦¬ êµ¬í•˜ëŠ” ê³µì‹ í•¨ìˆ˜ ì •ì˜
 void Distance_vector(Num i_list)
 {
 	double n_dot = 0;
 	double n_vol = 0;
 	double n_res = 0;
 
-	// 2Â÷ ¹æÁ¤½Ä¿¡¼­ÀÇ ¹æÇâ º¤ÅÍ
+	// 2ì°¨ ë°©ì •ì‹ì—ì„œì˜ ë°©í–¥ ë²¡í„°
 	double la_vector = - (i_list.nA / i_list.nC);
 	double lb_vector = - (i_list.nA / i_list.nB);
 
-	n_dot = (la_vector * i_list.nX) + (lb_vector * i_list.nY);  // º¤ÅÍÀÇ ³»ÀûÀ» °è»ê
-	n_vol = sqrt(pow(la_vector, 2) + pow(lb_vector, 2));  // º¤ÅÍÀÇ Å©±â °è»ê
+	n_dot = (la_vector * i_list.nX) + (lb_vector * i_list.nY);  // ë²¡í„°ì˜ ë‚´ì ì„ ê³„ì‚°
+	n_vol = sqrt(pow(la_vector, 2) + pow(lb_vector, 2));  // ë²¡í„°ì˜ í¬ê¸° ê³„ì‚°
 
 	n_res = fabs(n_dot) / n_vol;
 
-	// µÎ¹øÂ° °á°ú°ª Ãâ·Â
+	// ë‘ë²ˆì§¸ ê²°ê³¼ê°’ ì¶œë ¥
 	printf("Result_Distance#2 : %.2lf\n", n_res);
-	printf("Result_Distance#2 : %.2lf\n", la_vector);
-	printf("Result_Distance#2 : %.2lf\n", lb_vector);
 }
 
 int main(void)
 {
 	Num i_list = D_NUMBER;
 
-	// ÇÁ·Î±×·¥ ¼³¸í Ãâ·Â
+	// í”„ë¡œê·¸ë¨ ì„¤ëª… ì¶œë ¥
 	printf("This is a program that calculates distance.\n");
 	printf("\n");
 
-	// °Å¸®¸¦ °è»êÇÏ´Â µÎ°¡Áö ¹æ½ÄÀÇ ÇÔ¼ö È£Ãâ
+	// ê±°ë¦¬ë¥¼ ê³„ì‚°í•˜ëŠ” ë‘ê°€ì§€ ë°©ì‹ì˜ í•¨ìˆ˜ í˜¸ì¶œ
 	Distance_Calculation(i_list);
 	Distance_vector(i_list);
 
