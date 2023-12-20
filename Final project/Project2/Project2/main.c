@@ -17,7 +17,6 @@
 #define MAX_ALTITUDE 13100  // 항공기 최대 비행 고도(단위 : m)
 #define CHANGE_K 273.15  // 켈빈에서 섭씨 혹은 섭씨에서 켈빈으로 변화시키는 수
 #define NUM_TEN 10  // '10'에 대한 수
-#define LIFTRATE 5  // 고도에 따른 시간 비율
 #define RATE_NUM 100  // 결과값에 대한 비율
 
 // 각 변수 구조체 정의
@@ -204,7 +203,7 @@ void get_lift_time(M_Tool* temp)
 	for (int i = 0; i < temp->nH; ++i)
 	{
 		// 고도까지 올라가는 시간 구하는 공식
-		temp->liftTime = (temp->nH - 0) / LIFTRATE;  
+		temp->liftTime = sqrt((temp->nH - 0) / G);
 
 		return temp;
 	}
