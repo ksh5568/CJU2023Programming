@@ -1,9 +1,1 @@
-﻿  main.c
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(166,11): warning C4098: 'alititude_Calculate': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(174,13): warning C4098: 'get_temperature': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(182,13): warning C4098: 'get_rho': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(188,11): warning C4047: '<': 'M_Tool *'의 간접 참조 수준이 'int'과(와) 다릅니다.
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(192,14): warning C4098: 'get_pressure': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(194,16): warning C4047: '>=': 'M_Tool *'의 간접 참조 수준이 'int'과(와) 다릅니다.
-C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\Project2\main.c(208,14): warning C4098: 'get_lift_time': 'void' 함수에서 값을 반환하고 있습니다.
-  Project2.vcxproj -> C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\x64\Debug\Project2.exe
+﻿  Project2.vcxproj -> C:\Users\Kim\OneDrive - 청주대학교\문서\GitHub\ProgrammingCJU2023\Final project\Project2\x64\Debug\Project2.exe

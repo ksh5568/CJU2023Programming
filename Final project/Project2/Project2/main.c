@@ -217,13 +217,10 @@ void Output_First_Result(M_Tool* temp)
 	printf("\n");
 	printf("[ altitude (m) ] | [ Pressure (kPa) ] | [ Density  (kg/m^3) ] | [Temperature ('C)] | [ Speed (m/s) ]\n");
 
-	for (int i = 1; i <= temp->nH; i++)
+	for (int i = temp->nH; i > 1; i -= 100)
 	{
-		if (i % 100 == 0)
-		{
-			printf("[%10.2lf (m)] | [%10.4lf (kPa)] | [%10.4lf (kg/m^3)] | [%10.4lf ('C)] | [%10.4lf (m/s)]\n", 
-				(temp->nH / i) * RATE_NUM, (temp->nP / i) * RATE_NUM, (temp->nRHO / i) * RATE_NUM, (temp->nTEM / i) * RATE_NUM, (temp->nV / i) * RATE_NUM);
-		}
+		printf("[%10.2lf (m)] | [%10.4lf (kPa)] | [%10.4lf (kg/m^3)] | [%10.4lf ('C)] | [%10.4lf (m/s)]\n", 
+			(temp->nH / i) * RATE_NUM, (temp->nP / i) * RATE_NUM, (temp->nRHO / i) * RATE_NUM, (temp->nTEM / i) * RATE_NUM, (temp->nV / i) * RATE_NUM);	
 	}
 
 }
