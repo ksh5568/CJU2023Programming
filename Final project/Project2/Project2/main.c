@@ -218,7 +218,7 @@ void Output_First_Result(M_Tool* temp)
 	printf("\n");
 	printf("[ altitude (m) ] | [ Pressure (kPa) ] | [ Density  (kg/m^3) ] | [Temperature ('C)] | [ Speed (m/s) ]\n");
 
-	for (int i = 0; i < temp->nH; i++)
+	for (int i = 1; i <= temp->nH; i++)
 	{
 		if (i % 100 == 0)
 		{
